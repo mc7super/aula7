@@ -1,6 +1,7 @@
 package br.com.example.teladelogin;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,12 +38,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String loginInformado = nome.getText().toString();
-                String senhainformado = password.getText().toString();
+                String senhainformada = password.getText().toString();
 
-                if(loginInformado.equals("admin") && senhainformado.equals("admin")){
-                    Toast.makeText(MainActivity.this, "Login realizado", Toast.LENGTH_LONG).show();
+                if(loginInformado.equals("admin") && senhainformada.equals("admin")){
+                    //Toast.makeText(MainActivity.this, "Login realizado", Toast.LENGTH_LONG).show();
+                    Intent chamaSegundaTela = new Intent(MainActivity.this, TelaInicial.class);
+                    chamaSegundaTela.putExtra("chaveLoginInformado",loginInformado);
+                    chamaSegundaTela.putExtra("chaveSenhaInformada",senhainformada);
+
+                    startActivity(chamaSegundaTela);
+
                 }else{
-                    Toast.makeText(MainActivity.this, "Usuaria ou senha incorretos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Usuaria ou senha incorretos", Toast.LENGTH_SHORT)
+                            .show();
                 }
             }
         });
